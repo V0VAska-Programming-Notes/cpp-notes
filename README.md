@@ -10,3 +10,4 @@
 - [Синглетоны](singleton) - авось пригодится.
 - [Юникод в консоли](console_unicode)
 - Пущай [smart pointer](smart_pointers) выполнит немного работы за нас.
+- Нафига нужны эти [mutable](mutable)?
