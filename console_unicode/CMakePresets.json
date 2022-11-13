@@ -1,0 +1,172 @@
+{
+    "version": 3,
+    "configurePresets": [
+        {
+            "name": "base-preset",
+            "hidden": true,
+            "binaryDir": "${sourceDir}/out/build/${presetName}",
+            "installDir": "${sourceDir}/out/install/${presetName}",
+            "cacheVariables": {
+                "PRESET_NAME": "${presetName}"
+
+            }
+        },
+        {
+            "name": "win-base",
+            "hidden": true,
+            "inherits": "base-preset",
+            "cacheVariables": {
+                "CMAKE_C_COMPILER": "cl.exe",
+                "CMAKE_CXX_COMPILER": "cl.exe"
+            },
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Windows"
+            }
+        },
+        {
+            "name": "win-ninja",
+            "hidden": true,
+            "inherits": "win-base",
+            "generator": "Ninja"
+        },
+        {
+            "name": "win-ninja-x64-debug",
+            "displayName": "ninja-x64-debug",
+            "inherits": "win-ninja",
+            "architecture": {
+                "value": "x64",
+                "strategy": "external"
+            },
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "win-ninja-x64-release",
+            "displayName": "ninja-x64-release",
+            "inherits": "win-ninja-x64-debug",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "linux-ninja",
+            "hidden": true,
+            "inherits": "base-preset",
+            "generator": "Ninja",
+            "condition": {
+                "type": "equals",
+                "lhs": "${hostSystemName}",
+                "rhs": "Linux"
+            }
+        },
+        {
+            "name": "linux-ninja-debug",
+            "inherits": "linux-ninja",
+            "displayName": "Debug",
+            "description": "Ninja generator",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Debug"
+            }
+        },
+        {
+            "name": "linux-ninja-release",
+            "inherits": "linux-ninja",
+            "displayName": "Release",
+            "description": "Ninja generator",
+            "cacheVariables": {
+                "CMAKE_BUILD_TYPE": "Release"
+            }
+        },
+        {
+            "name": "VS2022-base",
+            "hidden": true,
+            "generator": "Visual Studio 17 2022",
+            "inherits": "win-base"
+        },
+        {
+            "name": "VS2022-x64",
+            "inherits": "VS2022-base",
+            "displayName": "VS2022 - x64",
+            "description": "Using compilers for Visual Studio 17 2022 (x64 architecture)",
+            "toolset": "host=x64",
+            "architecture": "x64"
+        },
+        {
+            "name": "VS2022-x86",
+            "inherits": "VS2022-base",
+            "displayName": "VS2022 - x86",
+            "description": "Using compilers for Visual Studio 17 2022 (x86 architecture)",
+            "toolset": "host=x86",
+            "architecture": "win32"
+        },
+        {
+            "name": "VS2022-x64-x86",
+            "inherits": "VS2022-base",
+            "displayName": "VS2022 - x64_x86",
+            "description": "Using compilers for Visual Studio 17 2022 (x64_x86 architecture)",
+            "toolset": "host=x64",
+            "architecture": "win32"
+        },
+        {
+            "name": "VS2022-x86-x64",
+            "inherits": "VS2022-base",
+            "displayName": "VS2022 - x86_x64",
+            "description": "Using compilers for Visual Studio 17 2022 (x86_x64 architecture)",
+            "toolset": "host=x86",
+            "architecture": "x64"
+        }
+    ],
+    "buildPresets": [
+        {
+            "name": "VS2022-x64-debug",
+            "displayName": "Debug",
+            "configurePreset": "VS2022-x64",
+            "configuration": "Debug"
+        },
+        {
+            "name": "VS2022-x64-release",
+            "displayName": "Release",
+            "configurePreset": "VS2022-x64",
+            "configuration": "Release"
+        },
+        {
+            "name": "VS2022-x86-debug",
+            "displayName": "Debug",
+            "configurePreset": "VS2022-x86",
+            "configuration": "Debug"
+        },
+        {
+            "name": "VS2022-x86-release",
+            "displayName": "Release",
+            "configurePreset": "VS2022-x86",
+            "configuration": "Release"
+        },
+        {
+            "name": "VS2022-x64-x86-debug",
+            "displayName": "Debug",
+            "configurePreset": "VS2022-x64-x86",
+            "configuration": "Debug"
+        },
+        {
+            "name": "VS2022-x64-x86-release",
+            "displayName": "Release",
+            "configurePreset": "VS2022-x64-x86",
+            "configuration": "Release"
+        },
+        {
+            "name": "VS2022-x86-x64-debug",
+            "displayName": "Debug",
+            "configurePreset": "VS2022-x86-x64",
+            "configuration": "Debug"
+        },
+        {
+            "name": "VS2022-x86-x64-release",
+            "displayName": "Release",
+            "configurePreset": "VS2022-x86-x64",
+            "configuration": "Release"
+        }
+    ]
+}
