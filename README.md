@@ -11,3 +11,4 @@
 - [Юникод в консоли](console_unicode)
 - Пущай [smart pointer](smart_pointers) выполнит немного работы за нас.
 - Нафига нужны эти [mutable](mutable)?
+- [Delay Load](DelayLoad) - это про подгрузку DLL в момент обращения к ней без использования LoadLibrary и GetProcAddress. Как в линухе - не знаю, даже не интересовался.
